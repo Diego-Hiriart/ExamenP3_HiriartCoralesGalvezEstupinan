@@ -32,14 +32,14 @@ public class GameController : MonoBehaviour
     void Start()
     {
         this.UI = this.Canvas.GetComponent<UIController>();
-        this.UI.SetSettingsMenuActive(false);//Settings menu is always inactive on game start
-        this.LoadMusicVolume();
-        this.CreateRules();
-
         this.pOneAS = this.playerOnePrefab.GetComponent<AudioSource>();
         this.pTwoAS = this.playerTwoPrefab.GetComponent<AudioSource>();
+        this.UI.SetSettingsMenuActive(false);//Settings menu is always inactive on game start
+        this.LoadMusicVolume();
+        this.CreateRules();        
 
-        StartGame(new Vector3(14.9899979f,6.25f,20.0499992f), Quaternion.identity, new Vector3(17.4899979f,6.25f,20.0499992f), Quaternion.identity);
+        StartGame(new Vector3(14.9899979f,6.25f,20.0499992f), this.playerOnePrefab.transform.rotation, 
+            new Vector3(17.4899979f,6.25f,20.0499992f), this.playerTwoPrefab.transform.rotation);
     }
 
     // Update is called once per frame
@@ -47,11 +47,12 @@ public class GameController : MonoBehaviour
     {
         //Open or close settings menu
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        {          
             if (!this.UI.GetSettingsMenuActive())//If not on pause, pause the game
             {
                 Time.timeScale = 0;
                 this.UI.SetSettingsMenuActive(true);
+                Debug.Log(UI.GetSettingsMenuActive());
             }
             else
             {
