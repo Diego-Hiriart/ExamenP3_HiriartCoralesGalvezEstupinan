@@ -1,0 +1,10 @@
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\bin\Debug\ExamenP3Rules.exe.config
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\bin\Debug\ExamenP3Rules.exe
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\bin\Debug\ExamenP3Rules.pdb
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\bin\Debug\Newtonsoft.Json.dll
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\bin\Debug\Newtonsoft.Json.xml
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\obj\Debug\ExamenP3Rules.csproj.AssemblyReference.cache
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\obj\Debug\ExamenP3Rules.csproj.CoreCompileInputs.cache
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\obj\Debug\ExamenP3Rules.csproj.CopyComplete
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\obj\Debug\ExamenP3Rules.exe
+C:\Code-UDLA\Progra 5\ExamenP3_HiriartCoralesGalvezEstupinan\ExamenP3Rules\obj\Debug\ExamenP3Rules.pdb

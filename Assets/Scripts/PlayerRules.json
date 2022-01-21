@@ -1,0 +1,74 @@
+[
+  {
+    "MemberName": null,
+    "Operator": "AndAlso",
+    "TargetValue": null,
+    "Rules": [
+      {
+        "MemberName": "p1X",
+        "Operator": "GreaterThan",
+        "TargetValue": 15,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p1X",
+        "Operator": "LessThan",
+        "TargetValue": 30,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p1Y",
+        "Operator": "GreaterThan",
+        "TargetValue": 146,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p1Y",
+        "Operator": "LessThan",
+        "TargetValue": 160.5,
+        "Rules": null,
+        "Inputs": []
+      }
+    ],
+    "Inputs": []
+  },
+  {
+    "MemberName": null,
+    "Operator": "AndAlso",
+    "TargetValue": null,
+    "Rules": [
+      {
+        "MemberName": "p2X",
+        "Operator": "GreaterThan",
+        "TargetValue": 15,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p2X",
+        "Operator": "LessThan",
+        "TargetValue": 30,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p2Y",
+        "Operator": "GreaterThan",
+        "TargetValue": 146,
+        "Rules": null,
+        "Inputs": []
+      },
+      {
+        "MemberName": "p2Y",
+        "Operator": "LessThan",
+        "TargetValue": 160.5,
+        "Rules": null,
+        "Inputs": []
+      }
+    ],
+    "Inputs": []
+  }
+]
