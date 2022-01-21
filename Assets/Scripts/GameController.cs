@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using MicroRuleEngine;
 using Newtonsoft.Json;
 using System;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject playerTwoPrefab;
     private GameObject pOneInstance;
     private GameObject pTwoInstance;
-    private AudioSource pOneAS;
-    private AudioSource pTwoAS;
+    [SerializeField]
+    private AudioMixer fxMixer;
 
     private Func<SaveGameData, bool> p1Wins;
     private Func<SaveGameData, bool> p2Wins;
@@ -31,9 +32,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.UIController = this.UI.GetComponent<UIController>();
-        this.pOneAS = this.playerOnePrefab.GetComponent<AudioSource>();
-        this.pTwoAS = this.playerTwoPrefab.GetComponent<AudioSource>();       
+        this.UIController = this.UI.GetComponent<UIController>();  
         this.LoadMusicVolume();
         //this.CreateRules();        
 
@@ -78,16 +77,15 @@ public class GameController : MonoBehaviour
             this.SetMusicSliderValue(value);
         }
 
-        if (PlayerPrefs.HasKey(musicVolumeKey))
+        if (PlayerPrefs.HasKey(sfxVolumeKey))
         {
             float value = PlayerPrefs.GetFloat(sfxVolumeKey);
-            this.pOneAS.volume = value;
-            this.pTwoAS.volume = value;
             this.SetFXSliderValue(value);
         }
         else
         {
-            float value = this.backgroundMusic.volume;
+            float value;
+            this.fxMixer.GetFloat("Volume", out value);
             this.SetFXSliderValue(value);
         }
     }
@@ -100,8 +98,7 @@ public class GameController : MonoBehaviour
 
     public void FXChange(float value)
     {
-        this.pOneAS.volume = value;
-        this.pTwoAS.volume = value;
+        this.fxMixer.SetFloat("Volume", value);
     }
 
     //Save the current value for the background music's volume
@@ -160,11 +157,11 @@ public class GameController : MonoBehaviour
 
     //Load a binary file and deserialize it a SaveGameData instance to put the balls and score as they where on the saved game
     public void LoadGame()
-    {
+    {        
         var filePath = Application.persistentDataPath + "/gamesave.data";
 
         if (File.Exists(filePath))
-        {
+        {           
             var bf = new BinaryFormatter();
             var fs = File.Open(filePath, FileMode.Open);
             var saveData = (SaveGameData)bf.Deserialize(fs);
@@ -196,6 +193,9 @@ public class GameController : MonoBehaviour
         playerTwoQuat.y = saveData.playerTwoRot[1];
         playerTwoQuat.z = saveData.playerTwoRot[2];
         playerTwoQuat.w = saveData.playerTwoRot[3];
+
+        Destroy(pOneInstance);
+        Destroy(pTwoInstance);
 
         StartGame(playerOneVec, playerOneQuat, playerTwoVec, playerTwoQuat);
     }

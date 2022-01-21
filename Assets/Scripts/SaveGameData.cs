@@ -18,7 +18,9 @@ public class SaveGameData
     public SaveGameData(List<float> playerOnePos, List<float> playerOneRot, List<float> playerTwoPos, List<float> playerTwoRot)
     {
         this.playerOnePos = playerOnePos;
+        this.playerOneRot = playerOneRot;
         this.playerTwoPos = playerTwoPos;
+        this.playerTwoRot = playerTwoRot;
 
         this.p1X = playerOnePos[0];
         this.p1Z = playerOnePos[2];
