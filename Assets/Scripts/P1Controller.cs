@@ -44,6 +44,16 @@ public class P1Controller : MonoBehaviour
             this.transform.Translate(Vector3.up * speed* Time.deltaTime*jumpPower);
             this.JumpEffect();
         }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            this.transform.Rotate(Vector3.down * speed*5 * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            this.transform.Rotate(Vector3.up * speed*5 * Time.deltaTime);
+        }
     }
 
     private void JumpEffect()
