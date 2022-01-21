@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.IO;
+using MicroRuleEngine;
+using Newtonsoft.Json;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -16,15 +20,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button saveGame;
     [SerializeField] private Button loadGame;
     [SerializeField] private Button quitGame;
-    [SerializeField]
-    private GameObject gameWonObj;
-    [SerializeField]
-    private TextMeshProUGUI gameWonText;
+    [SerializeField] private GameObject gameWonObj;
+    [SerializeField] private TextMeshProUGUI gameWonText;
+
+    private Func<SaveGameData, bool> p1Wins;
+    private Func<SaveGameData, bool> p2Wins;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.SetSettingsMenuActive(false);//Settings menu is always inactive on game start
+        this.settingsMenu.SetActive(false);//Settings menu is always inactive on game start
         this.gameWonObj.SetActive(false);
         this.gameControl = this.controller.GetComponent<GameController>();
         //Add listeners for the slider and buttons
@@ -35,6 +40,51 @@ public class UIController : MonoBehaviour
         this.saveGame.onClick.AddListener(delegate { SaveGameClicked(); });
         this.loadGame.onClick.AddListener(delegate { LoadGameClicked(); });
         this.quitGame.onClick.AddListener(delegate { QuitGameClicked(); });
+
+        this.CreateRules();        
+
+    }
+
+    private void Update() 
+    {
+        //Open or close settings menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {          
+            if (!this.GetSettingsMenuActive())//If not on pause, pause the game
+            {
+                this.SetSettingsMenuActive(true);
+                Time.timeScale = 0;
+            }
+            else if(this.GetSettingsMenuActive())
+            {
+                this.SetSettingsMenuActive(false);
+                Time.timeScale = 1;
+            }
+        } 
+    }
+
+    private void CreateRules()
+    {
+        string jsonContents = File.ReadAllText(@".\Assets\Scripts\PlayerRules.json");
+        List<Rule> rulesList = JsonConvert.DeserializeObject<List<Rule>>(jsonContents);
+        MRE engine = new MRE();
+        this.p1Wins = engine.CompileRule<SaveGameData>(rulesList[0]);
+        this.p2Wins = engine.CompileRule<SaveGameData>(rulesList[1]);
+    }
+
+    public void PlayerWins(SaveGameData players)
+    {
+        if (this.p1Wins(players))
+        {
+            GameWon(1);
+            Time.timeScale = 0;
+        }
+
+        if (this.p2Wins(players))
+        {
+            GameWon(2);
+            Time.timeScale = 0;
+        }
     }
 
     //Change the slider's value
@@ -52,7 +102,6 @@ public class UIController : MonoBehaviour
     public void SetSettingsMenuActive(bool status)
     {      
         this.settingsMenu.SetActive(status);
-        Debug.Log(this.settingsMenu.activeSelf);
     }
 
     //Check status of the settings menu
@@ -107,10 +156,12 @@ public class UIController : MonoBehaviour
         Debug.Log("Won");
         if (player == 1)
         {
+            gameWonObj.SetActive(true);
             this.gameWonText.text = "Player One Won!";
         }
         else if (player == 2)
         {
+            gameWonObj.SetActive(true);
             this.gameWonText.text = "Player Two Won!";
         }
     }

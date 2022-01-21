@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOnePrefab: {fileID: 1157808220083839540, guid: c989300382720304396fc58e1afbd09f, type: 3}
   playerTwoPrefab: {fileID: 4859832310032488401, guid: 81c2620a4c61cf84ea1e4ef00ca15260, type: 3}
-  Canvas: {fileID: 3082483771292198559, guid: 3348d0037172449c584c91cb53d14ae8, type: 3}
-  backgroundMusic: {fileID: 245063117613763762, guid: cbcc932c33000104d91e3b197ec9f90e, type: 3}
+  UI: {fileID: 0}
+  backgroundMusic: {fileID: 0}

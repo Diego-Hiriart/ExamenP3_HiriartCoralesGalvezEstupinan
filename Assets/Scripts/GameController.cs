@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
     private Func<SaveGameData, bool> p1Wins;
     private Func<SaveGameData, bool> p2Wins;
 
-    [SerializeField] private GameObject Canvas;
-    private UIController UI;//Controller for UI elements
+    [SerializeField] private GameObject UI;
+    private UIController UIController;//Controller for UI elements
 
     [SerializeField] private AudioSource backgroundMusic;
     //Key to store and retrieve background music volume setting
@@ -31,11 +31,11 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.UI = this.Canvas.GetComponent<UIController>();
+        this.UIController = this.UI.GetComponent<UIController>();
         this.pOneAS = this.playerOnePrefab.GetComponent<AudioSource>();
         this.pTwoAS = this.playerTwoPrefab.GetComponent<AudioSource>();       
         this.LoadMusicVolume();
-        this.CreateRules();        
+        //this.CreateRules();        
 
         StartGame(new Vector3(14.9899979f,6.25f,20.0499992f), this.playerOnePrefab.transform.rotation, 
             new Vector3(17.4899979f,6.25f,20.0499992f), this.playerTwoPrefab.transform.rotation);
@@ -44,49 +44,23 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Open or close settings menu
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {          
-            if (!this.UI.GetSettingsMenuActive())//If not on pause, pause the game
-            {
-                this.UI.SetSettingsMenuActive(true);
-                Time.timeScale = 0;                
-            }
-            else if(this.UI.GetSettingsMenuActive())
-            {
-                this.UI.SetSettingsMenuActive(false);
-                Time.timeScale = 1;
-            }
-            
-        }
-
-        if (this.pOneInstance != null && this.pOneInstance != null)
+        if (this.pOneInstance != null && this.pTwoInstance != null)
         {
             SaveGameData players = this.CreateSaveGameData();
 
-            if (this.p1Wins(players))
-            {
-                this.UI.GameWon(1);
-                Time.timeScale = 0;
-            }
-
-            if (this.p2Wins(players))
-            {
-                this.UI.GameWon(2);
-                Time.timeScale = 0;
-            }
+            UIController.PlayerWins(players);
         }       
     }
 
     //Tell the UI controller to update the slider's position
     private void SetMusicSliderValue(float value)
     {
-        this.UI.MusicSliderValue(value);
+        this.UIController.MusicSliderValue(value);
     }
 
     private void SetFXSliderValue(float value)
     {
-        this.UI.FXSliderValue(value);
+        this.UIController.FXSliderValue(value);
     }
 
     //Get the last saved value for the background music's volume
