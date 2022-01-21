@@ -33,8 +33,7 @@ public class GameController : MonoBehaviour
     {
         this.UI = this.Canvas.GetComponent<UIController>();
         this.pOneAS = this.playerOnePrefab.GetComponent<AudioSource>();
-        this.pTwoAS = this.playerTwoPrefab.GetComponent<AudioSource>();
-        this.UI.SetSettingsMenuActive(false);//Settings menu is always inactive on game start
+        this.pTwoAS = this.playerTwoPrefab.GetComponent<AudioSource>();       
         this.LoadMusicVolume();
         this.CreateRules();        
 
@@ -50,11 +49,10 @@ public class GameController : MonoBehaviour
         {          
             if (!this.UI.GetSettingsMenuActive())//If not on pause, pause the game
             {
-                Time.timeScale = 0;
                 this.UI.SetSettingsMenuActive(true);
-                Debug.Log(UI.GetSettingsMenuActive());
+                Time.timeScale = 0;                
             }
-            else
+            else if(this.UI.GetSettingsMenuActive())
             {
                 this.UI.SetSettingsMenuActive(false);
                 Time.timeScale = 1;

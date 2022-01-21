@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject controller;
     private GameController gameControl;//Reference to the game controller
-    [SerializeField] private GameObject settingsMenu;//The settings menu that can be accessed pressing Escape
+    [SerializeField] public GameObject settingsMenu;//The settings menu that can be accessed pressing Escape
     [SerializeField] private Slider volumeSlider;//Slider to change music volume
     [SerializeField] private Slider sfxSlider;//Slider to change sound effects
     [SerializeField] private Button saveSettings;//Save music volume setting
@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button quitGame;
     [SerializeField]
     private GameObject gameWonObj;
+    [SerializeField]
     private TextMeshProUGUI gameWonText;
 
     // Start is called before the first frame update
@@ -25,7 +26,6 @@ public class UIController : MonoBehaviour
     {
         this.SetSettingsMenuActive(false);//Settings menu is always inactive on game start
         this.gameWonObj.SetActive(false);
-        this.gameWonText = this.gameWonObj.GetComponent<TextMeshProUGUI>();
         this.gameControl = this.controller.GetComponent<GameController>();
         //Add listeners for the slider and buttons
         this.volumeSlider.onValueChanged.AddListener(delegate { VolumeValueChange(); });
@@ -50,8 +50,9 @@ public class UIController : MonoBehaviour
 
     //Change the SettingsMenu to active or inactive (visible or not)
     public void SetSettingsMenuActive(bool status)
-    {
+    {      
         this.settingsMenu.SetActive(status);
+        Debug.Log(this.settingsMenu.activeSelf);
     }
 
     //Check status of the settings menu
@@ -103,6 +104,7 @@ public class UIController : MonoBehaviour
 
     public void GameWon(int player)
     {
+        Debug.Log("Won");
         if (player == 1)
         {
             this.gameWonText.text = "Player One Won!";

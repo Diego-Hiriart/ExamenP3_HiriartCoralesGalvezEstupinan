@@ -32,7 +32,6 @@ public class EnemyController : MonoBehaviour
         if(timer)
         {
             tTime += Time.deltaTime;
-            Debug.Log(tTime);
         }
         else
         {

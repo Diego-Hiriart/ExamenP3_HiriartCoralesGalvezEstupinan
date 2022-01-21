@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9d437497457e34b87f410d489944db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 9193508745835493289, guid: 9d6fb508627a9ba4dade6c318a783ab5, type: 3}
+  controller: {fileID: 0}
   settingsMenu: {fileID: 3082483772355730770}
   volumeSlider: {fileID: 3082483772848919995}
   sfxSlider: {fileID: 5107377427908375996}
@@ -565,6 +565,7 @@ MonoBehaviour:
   loadGame: {fileID: 3082483772505416762}
   quitGame: {fileID: 3082483772170566361}
   gameWonObj: {fileID: 7586490230596793514}
+  gameWonText: {fileID: 3750373759266745163}
 --- !u!1 &3082483771359015694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3082483772355730771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2758,7 +2759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player X Won!
+  m_text: Player One Won!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
